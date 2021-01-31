@@ -7,7 +7,11 @@
 import java.util.Scanner;
 public class BankAccount {
     
-    public static void main(String[] args) {
+    /* Method calls for collection method, also checks if socialNum is in correct format.
+     * checkInfo checks fullName, address, city, state, and socialNum if string is empty.
+     */
+	
+	public static void main(String[] args) {
         collection();
     }
 
@@ -29,6 +33,8 @@ public class BankAccount {
         }
     }
     
+    /*Method asks for user input for personal information to start bank account.*/
+    
     public static void collection() {
 
         Scanner scnr = new Scanner(System.in);
@@ -43,17 +49,18 @@ public class BankAccount {
         int zipCode;
      
         
-
-            System.out.print("Name: ");
-            fullName = scnr.next();
+        //Asks user for input
+        
+        System.out.print("Name: ");
+        fullName = scnr.next();
          
-            System.out.print("Address: ");
-            address = scnr.next();
+        System.out.print("Address: ");
+        address = scnr.next();
             
-            System.out.print("City: ");
-            city = scnr.next();
-            System.out.print("State: ");
-            state = scnr.next();
+        System.out.print("City: ");
+        city = scnr.next();
+        System.out.print("State: ");
+        state = scnr.next();
 
         //Input validation for zipCode and socialNum
         do {
@@ -72,7 +79,11 @@ public class BankAccount {
             socialNum = scnr.next();
         } while(!checkSocialFormat(socialNum));
         
+        //Calls congrats method
+        
         congrats();
+        
+        //Calls personal account method
         
         personalAccount(fullName, address, city, state, socialNum, zipCode);
         
@@ -80,10 +91,12 @@ public class BankAccount {
 
     //Method for approval of account
     public static void congrats() {
-    	System.out.println("----------------------------------------");
+    	System.out.println("-----------------------------------------");
         System.out.println(" Congratulations! You have been approved");
-        System.out.println("----------------------------------------");
+        System.out.println("-----------------------------------------");
     }
+    
+    //Method for hundredBill count
     
     public static int hundredBillCount(Double totalWithdraw) {
     	
@@ -98,6 +111,8 @@ public class BankAccount {
     	
     }
     
+    //Method for twentyBill count
+    
     public static int twentyBillCount(Double currentBalance) {
     	
     	int twentyBills = 0;
@@ -109,6 +124,8 @@ public class BankAccount {
     	return twentyBills;
     	
     }
+    
+    //Method for tenBill count
     
     public static int tenBillCount(Double totalWithdraw) {
     	
@@ -122,6 +139,8 @@ public class BankAccount {
     	
     }
     
+    //Method for fiveBill count
+    
     public static int fiveBillCount(Double totalWithdraw) {
     	
     	int fiveBills = 0;
@@ -133,6 +152,8 @@ public class BankAccount {
     	return fiveBills;
     	
     }
+    
+    //Method for onesBill count
     
     public static int onesBillCount(Double totalWithdraw) {
     	
@@ -146,7 +167,7 @@ public class BankAccount {
     	
     }
     
-    
+    /* Method includes taking input from user for bank information and then displays out summary.*/
    
     public static void personalAccount(String fullName, String address, String city, String state, String socialNum, int zipCode)  {
     	Double startBalance = null;
@@ -161,7 +182,7 @@ public class BankAccount {
     	int numberOf5;
     	int numberOf1;
     	
-    	
+    	//Input for startBalance, deposit, and two withdrawals.
     	
     	Scanner scnr = new Scanner(System.in);
     
@@ -177,15 +198,22 @@ public class BankAccount {
     	System.out.print("Amount to Withdraw: $");
     	secondWithdraw = scnr.nextDouble();
     	
+    	
+    	//Calculation of currentBalance after input is taken
+    	
     	currentBalance = startBalance + deposit - firstWithdraw - secondWithdraw;
     	
+    	//Input validation for withdrawal of money
+    	
     	if ((firstWithdraw + secondWithdraw) > startBalance) {
-    		System.out.print("Insufficient funds");
+    		System.out.print("Insufficient Balance");
     		System.exit(0);
  
     	}
     	
-    	
+    	/* This keeps track of the balance after we have taken the 100, 20, 10, 5, and 1 dollar bills.
+    	 * At the end, the afterBalance will be the remaining cents.
+    	 */
     	numberOf100 = hundredBillCount(currentBalance);
     	
     	afterBalance  =  (currentBalance - (numberOf100 * 100));
@@ -207,51 +235,49 @@ public class BankAccount {
     	afterBalance = (afterBalance - (numberOf1 * 1));
     	
     	
+    	//Account information displayed
     	
-    	
-    	
-    	
-    	
-    	
-    	//Account summary
-    	
-    	System.out.println("******************************");
-    	System.out.println("\tAccount Information");
-    	System.out.println("******************************");
+    	System.out.println("*****************************************");
+    	System.out.println("\t  Account Information");
+    	System.out.println("*****************************************");
     	
     	System.out.println("Profile: ");
-    	System.out.println("------------------ ---------------- --------------");
-    	System.out.println("------------------ ----  ---------- ");
-    	System.out.println("Name\t\t Address\t\t City\t\t State");
-    	System.out.println("\t\t Zip Code \t SSN");
-    	System.out.println("------------------ ---------------- --------------");
-    	System.out.println("------------------ ----  ---------- ");
+    	System.out.println("-------------------- -------------------- -------------------- -----------");
+    	System.out.println("--------- -------- ----------- ");
+    	System.out.println("Name                 Address              City                 State");
+    	System.out.println("          Zip Code SSN");
+    	System.out.println("-------------------- -------------------- -------------------- -----------");
+    	System.out.println("--------- -------- -----------");
     	
-    	System.out.println(fullName.toUpperCase()+ "\t\t" + address + "\t\t" + city + "\t\t" + state);
-    	System.out.println("\t\t" + zipCode + "\t" + socialNum);
+    	System.out.println((fullName.toUpperCase())+ "\t             " + address + "\t\t  " + city + "\t       " + state);
+    	System.out.println("\t  " + zipCode + "   " + socialNum);
     	
-    	System.out.println("------------------ ---------------- --------------");
-    	System.out.println("------------------ ----  ---------- ");
-    	System.out.println("******************************");
+    	System.out.println("-------------------- -------------------- -------------------- -----------");
+    	System.out.println("--------- -------- -----------");
+    	System.out.println("**********************************");
+    	
+    	//Account summary displayed
     	
     	System.out.println("Account Summary");
-    	System.out.println("\t\tInitial Balance: $");
+    	System.out.print("    Initial Balance: $");
     	System.out.printf("%.2f", startBalance);
-    	System.out.println("\tDeposit: $");
+    	System.out.println();
+    	System.out.print("            Deposit:    ");
     	System.out.printf("%.2f", deposit);
     	System.out.println();
-    	System.out.print("\t\tWithdraw: $");
+    	System.out.print("         Withdrawal:   ");
     	System.out.printf("%.2f", firstWithdraw);
     	System.out.println();
-    	System.out.print("\t\tWithdraw: $");
+    	System.out.print("         Withdrawal:   ");
     	System.out.printf("%.2f", secondWithdraw);
     	System.out.println();
-    	System.out.print("\t\tCurrent Balance: ");
+    	System.out.print("    Current Balance: $");
     	System.out.printf("%.2f", currentBalance);
     	System.out.println();
     	
-    	System.out.println("******************************");
+    	System.out.println("**********************************");
     
+    	//Bill count summary displayed
     	
     	System.out.println("Bill count: ");
     	System.out.println("$100 Bills: " + numberOf100);
