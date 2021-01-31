@@ -155,7 +155,7 @@ public class BankAccount {
     	Double secondWithdraw;
     	Double currentBalance;
     	int numberOf100;
-    	Double afterOneHundreds;
+    	Double afterBalance;
     	int numberOf20;
     	int numberOf10;
     	int numberOf5;
@@ -188,25 +188,23 @@ public class BankAccount {
     	
     	numberOf100 = hundredBillCount(currentBalance);
     	
-    	afterOneHundreds  =  (currentBalance - (numberOf100 * 100));
+    	afterBalance  =  (currentBalance - (numberOf100 * 100));
     	
-    	numberOf20 = twentyBillCount(afterOneHundreds);
+    	numberOf20 = twentyBillCount(afterBalance);
     	
-    	afterOneHundreds = (afterOneHundreds - (numberOf20 * 20));
+    	afterBalance = (afterBalance - (numberOf20 * 20));
     	
-    	numberOf10 = tenBillCount(afterOneHundreds);
+    	numberOf10 = tenBillCount(afterBalance);
     	
-    	afterOneHundreds = (afterOneHundreds - (numberOf10 * 10));
+    	afterBalance = (afterBalance - (numberOf10 * 10));
     	
-    	numberOf5 = fiveBillCount(afterOneHundreds);
+    	numberOf5 = fiveBillCount(afterBalance);
     	
-    	afterOneHundreds = (afterOneHundreds - (numberOf5 * 5));
+    	afterBalance = (afterBalance - (numberOf5 * 5));
     	
-    	numberOf1 = onesBillCount(afterOneHundreds);
+    	numberOf1 = onesBillCount(afterBalance);
     	
-    	afterOneHundreds = (afterOneHundreds - (numberOf1 * 1));
-    	
-    	
+    	afterBalance = (afterBalance - (numberOf1 * 1));
     	
     	
     	
@@ -214,6 +212,8 @@ public class BankAccount {
     	
     	
     	
+    	
+    	//Account summary
     	
     	System.out.println("******************************");
     	System.out.println("\tAccount Information");
@@ -237,7 +237,7 @@ public class BankAccount {
     	System.out.println("Account Summary");
     	System.out.println("\t\tInitial Balance: $");
     	System.out.printf("%.2f", startBalance);
-    	System.out.println("\t\tDeposit: $");
+    	System.out.println("\tDeposit: $");
     	System.out.printf("%.2f", deposit);
     	System.out.println();
     	System.out.print("\t\tWithdraw: $");
@@ -260,7 +260,7 @@ public class BankAccount {
     	System.out.println("  $5 Bills: " + numberOf5);
     	System.out.println("  $1 Bills: " + numberOf1);
     	System.out.print("     Cents: ");
-    	System.out.printf("%.2f", afterOneHundreds);
+    	System.out.printf("%.2f", afterBalance);
 
 
 
